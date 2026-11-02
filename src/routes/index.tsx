@@ -42,7 +42,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const POPULAR = ["porsche-911", "tesla-model-3", "mahindra-thar", "bmw-m3", "hyundai-creta"];
+const POPULAR: [string, string][] = [
+  ["porsche-911", "Porsche 911"],
+  ["tesla-model-3", "Tesla Model 3"],
+  ["mahindra-thar", "Mahindra Thar"],
+  ["bmw-m3", "BMW M3"],
+  ["hyundai-creta", "Hyundai Creta"],
+];
 
 function Index() {
   const [query, setQuery] = useState("");
@@ -225,7 +231,7 @@ function Index() {
             style={{ animationDelay: "320ms" }}
           >
             <span className="py-1.5 text-xs text-muted-foreground">Popular:</span>
-            {POPULAR.map((id) => {
+            {POPULAR.map(([id, label]) => {
               const car = cars.find((c) => c.id === id)!;
               return (
                 <button
@@ -233,7 +239,7 @@ function Index() {
                   onClick={() => choose(car)}
                   className="glass rounded-full border px-3 py-1.5 text-xs font-medium transition hover:border-primary hover:text-primary-glow"
                 >
-                  {car.make} {car.model.split(" ")[0]}
+                  {label}
                 </button>
               );
             })}
